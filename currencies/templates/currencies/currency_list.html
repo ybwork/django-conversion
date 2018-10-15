@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form id="currency-rate" action="{% url 'currency_convert' %}" method="GET">
+        <select name="from_currency">
+            <option value=""></option>
+            {% for currency in object_list %}
+                <option value="{{ currency.id }}">{{ currency.short_name }}</option>
+            {% endfor %}
+        </select>
+        <select name="to_currency">
+            <option value=""></option>
+            {% for currency in object_list %}
+                <option value="{{ currency.id }}">{{ currency.short_name }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="amount">
+        <button class="show-rate" type="submit">show</button>
+    </form>
+{% endblock %}

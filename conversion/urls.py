@@ -17,12 +17,9 @@ import debug_toolbar
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as django_auth_views
-from conversion import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    path('', views.home, name='home'),
 
     path('accounts/login/',
          django_auth_views.LoginView.as_view(template_name='auth/login.html',
@@ -60,5 +57,7 @@ urlpatterns = [
          django_auth_views.PasswordResetDoneView.as_view(template_name='auth/password_reset_done.html'),
          name='password_reset_done'),
 
-    path('__debug__/', include(debug_toolbar.urls))
+    path('__debug__/', include(debug_toolbar.urls)),
+
+    path('', include('currencies.urls'))
 ]
