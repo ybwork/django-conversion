@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <p>{{ form.non_field_errors }}</p>
+
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" value="{{ form.data.username }}">
+        <input type="password" name="password" value="{{ form.data.password }}">
+        <button type="submit">Go</button>
+    </form>
+
+{% endblock %}

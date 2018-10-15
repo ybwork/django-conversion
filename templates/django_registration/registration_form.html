@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ form.non_field_errors }}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.username.errors }}
+        <input type="text" name="username" value="{{ form.data.username }}">
+
+        {{ form.email.errors }}
+        <input type="email" name="email" value="{{ form.data.email }}">
+
+        {{ form.password1.errors }}
+        <input type="password" name="password1" value="{{ form.data.password1 }}">
+
+        {{ form.password2.errors }}
+        <input type="password" name="password2" value="{{ form.data.password2 }}">
+
+        <button type="submit">Register</button>
+    </form>
+{% endblock %}
