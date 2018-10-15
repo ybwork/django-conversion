@@ -82,3 +82,6 @@ tests/coverage_html/
 tests/.coverage
 build/
 tests/report/
+
+# celery beat schedule file
+celerybeat-schedule
