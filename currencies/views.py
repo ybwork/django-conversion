@@ -1,6 +1,4 @@
-import datetime
-from django.db.models import F
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView
 
@@ -41,17 +39,3 @@ def count_money(amount, cost):
     return round(result, 2)
 
 
-def update_currency_rates(request):
-    one_day_ago = datetime.datetime.now() - datetime.timedelta(days=1)
-
-    data = rate_model.objects.filter(
-        updated_at__lt=one_day_ago
-    ).filter(
-        from_currency=F('from_currency_id')
-    )[:3]
-
-    base = data.first().from_currency.short_name
-    rates = [val.to_currency.short_name for val in data]
-    result = ','.join(rates)
-
-    return HttpResponse(result)

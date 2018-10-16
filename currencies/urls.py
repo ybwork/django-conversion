@@ -6,5 +6,4 @@ from currencies.views import CurrencyListView
 urlpatterns = [
     path('', CurrencyListView.as_view(), name='home'),
     path('currency/convert/', views.convert, name='currency_convert'),
-    path('currency/update/rates/', views.update_currency_rates),
 ]
