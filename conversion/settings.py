@@ -130,9 +130,9 @@ STATIC_URL = '/static/'
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = 'templates/emails/'
 
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = 'login'
+# LOGIN_URL = 'login'
+# LOGIN_REDIRECT_URL = '/'
+# LOGOUT_REDIRECT_URL = 'login'
 
 ACCOUNT_ACTIVATION_DAYS = 7
 
