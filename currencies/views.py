@@ -37,5 +37,3 @@ def convert(request):
 def count_money(amount, cost):
     result = amount * cost
     return round(result, 2)
-
-

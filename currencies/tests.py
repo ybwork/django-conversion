@@ -30,6 +30,6 @@ class CurrencyMethodTests(TestCase):
 
     def test_get_rates_from_api_if_not_valid_params(self):
         base_currency = 'ddfdf'
-        self.assertEqual(currencies_utils.get_rates_from_api(base_currency), 400)
+        self.assertEqual(currencies_utils.get_currency_rates_from_api(base_currency), 400)
 
 
