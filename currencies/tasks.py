@@ -4,7 +4,7 @@ import datetime
 
 from celery import shared_task
 from django.core.exceptions import ValidationError
-from django.http import JsonResponse
+from django.http import HttpResponse
 
 from currencies.utils import get_currency_rates_from_api
 from currencies.views import rate_model
@@ -17,7 +17,7 @@ def update_currency_rates():
     currencies_rates = get_currencies_rates(one_day_ago)
 
     if not currencies_rates:
-        return JsonResponse(data={}, status=200)
+        return HttpResponse(status=200)
 
     for currency_rate in currencies_rates:
         try:
@@ -28,7 +28,7 @@ def update_currency_rates():
             currency_rate.cost = cost
             currency_rate.save()
         except (KeyError, TypeError, ValidationError):
-            return JsonResponse(data={}, status=500)
+            return HttpResponse(status=500)
 
 
 def get_datetime_a_day_ago(now):
@@ -36,6 +36,7 @@ def get_datetime_a_day_ago(now):
 
 
 def get_currencies_rates(updated_at):
+    # quantity for dev
     return rate_model.objects.filter(updated_at__lt=updated_at)[:3]
 
 

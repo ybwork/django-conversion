@@ -1,8 +1,11 @@
+import datetime
+
 from django.test import TestCase
 from django.urls import reverse
 
 from currencies import views as currencies_views
 from currencies import utils as currencies_utils
+from currencies import tasks as currencies_tasks
 
 
 class CurrencyMethodTests(TestCase):
@@ -28,8 +31,26 @@ class CurrencyMethodTests(TestCase):
         result = round(amount * cost, 2)
         self.assertEqual(currencies_views.count_money(amount, cost), result)
 
+
+class CurrencyRatesApiMethodTests(TestCase):
     def test_get_rates_from_api_if_not_valid_params(self):
         base_currency = 'ddfdf'
         self.assertEqual(currencies_utils.get_currency_rates_from_api(base_currency), 400)
+
+
+class TaskMethodTests(TestCase):
+    def test_function_return_datetime_a_day_ago(self):
+        now = datetime.datetime.now()
+        day_ago = now - datetime.timedelta(days=1)
+        self.assertEqual(currencies_tasks.get_datetime_a_day_ago(now), day_ago)
+
+    def test_get_currencies_rates_if_all_updated(self):
+        now = datetime.datetime.now()
+        three_day_ago = now - datetime.timedelta(days=3)
+        self.assertQuerysetEqual(currencies_tasks.get_currencies_rates(three_day_ago), [])
+
+    def test_update_currency_rates_if_all_updated(self):
+        response = currencies_tasks.update_currency_rates()
+        self.assertEqual(response.status_code, 200)
 
 

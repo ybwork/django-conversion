@@ -13,7 +13,8 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.conf.beat_schedule = {
     'update-currency-rates-every-5-seconds': {
         'task': 'update_currency_rates',
-        'schedule': 2.0,
+        # time for dev
+        'schedule': 5.0,
     },
 }
 
