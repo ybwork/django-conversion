@@ -18,3 +18,9 @@
         <button class="show-rate" type="submit">show</button>
     </form>
 {% endblock %}
+
+{% block scripts %}
+    {% load static %}
+    <script src="{% static 'currencies/app.js' %}"></script>
+{% endblock %}
+

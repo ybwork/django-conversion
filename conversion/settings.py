@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
-    'django_registration',
     'currencies'
 ]
 
@@ -127,8 +126,8 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = 'templates/emails/'
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = 'templates/emails/'
 
 # LOGIN_URL = 'login'
 # LOGIN_REDIRECT_URL = '/'

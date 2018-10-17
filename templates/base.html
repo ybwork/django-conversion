@@ -3,40 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.19/css/uikit.min.css"/>
 </head>
 <body>
-
     {% block content %}{% endblock %}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.19/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.19/js/uikit-icons.min.js"></script>
 
-    <script>
-        $('#currency-rate').on('submit', function(e) {
-            e.preventDefault();
-
-            var form = $(this)
-            var action = form.attr('action')
-            var method = form.attr('method')
-            var data = form.serialize()
-
-            $.ajax({
-                url: action,
-                type: method,
-                data: data,
-
-
-                success: function(data) {
-                    console.log(data)
-                    // var response = $.parseJSON(data);
-                },
-                error: function(e) {
-                    console.log(e)
-                    // var errors = e.responseJSON;
-                }
-            });
-        });
-    </script>
+    {% block scripts %}{% endblock %}
 </body>
 </html>
